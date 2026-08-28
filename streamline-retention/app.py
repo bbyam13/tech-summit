@@ -327,6 +327,49 @@ with gr.Blocks(title="Streamline Retention Agent", theme=gr.themes.Base()) as ap
             memo_output = gr.Markdown()
             memo_btn.click(fn=draft_memo, inputs=memo_sub_id, outputs=memo_output)
         
+        # --- TAB 3: ACT ---
+        with gr.Tab("Actions"):
+            gr.Markdown("### Submit Retention Action")
+            with gr.Row():
+                act_sub_id = gr.Textbox(label="Subscriber ID", placeholder="SUB-0000214")
+                act_type = gr.Dropdown(
+                    choices=["offer_presented", "follow_up", "escalation"],
+                    label="Action Type"
+                )
+                act_offer = gr.Dropdown(
+                    choices=["bill_credit", "loyalty_discount", "upgrade_offer", "contract_extension", "service_bundle"],
+                    label="Offer"
+                )
+            act_notes = gr.Textbox(label="Notes", lines=2)
+            act_approver = gr.Textbox(label="Your Name/ID", placeholder="agent-jsmith")
+            submit_btn = gr.Button("Submit Action", variant="primary")
+            submit_result = gr.Textbox(label="Result", interactive=False)
+            submit_btn.click(
+                fn=submit_action,
+                inputs=[act_sub_id, act_type, act_offer, act_notes, act_approver],
+                outputs=submit_result
+            )
+            
+            gr.Markdown("### Approve / Review Actions")
+            with gr.Row():
+                approve_id = gr.Number(label="Action ID to Approve", precision=0)
+                approve_name = gr.Textbox(label="Approver Name", placeholder="mgr-jones")
+                approve_btn = gr.Button("Approve", variant="secondary")
+            approve_result = gr.Textbox(label="Result", interactive=False)
+            approve_btn.click(
+                fn=approve_action,
+                inputs=[approve_id, approve_name],
+                outputs=approve_result
+            )
+            
+            gr.Markdown("### Action Log")
+            actions_refresh = gr.Button("Refresh Actions")
+            actions_table = gr.Dataframe(
+                headers=["ID", "Subscriber", "Type", "Offer", "Status", "Agent", "Created", "Notes"],
+                interactive=False
+            )
+            actions_refresh.click(fn=load_pending_actions, outputs=actions_table)
+    
     # Auto-load on start
     app.load(fn=load_at_risk_subscribers, outputs=risk_table)
 
