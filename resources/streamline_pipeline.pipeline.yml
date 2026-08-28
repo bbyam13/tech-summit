@@ -1,0 +1,20 @@
+resources:
+  pipelines:
+    streamline_subscriber_360:
+      name: "streamline_subscriber_360"
+
+      catalog: ${var.catalog}
+      target: ${var.schema}
+
+      libraries:
+        - glob:
+            include: ../transformation/**
+
+      serverless: true
+      development: true
+      photon: true
+      channel: current
+
+      configuration:
+        catalog: ${var.catalog}
+        schema: ${resources.schemas.demo_schema.name}
