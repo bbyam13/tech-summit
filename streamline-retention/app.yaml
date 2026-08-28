@@ -1,0 +1,8 @@
+command:
+  - python
+  - app.py
+
+resources:
+  - name: lakebase-db
+    database:
+      name: projects/telco-project/branches/production/databases/databricks-postgres
