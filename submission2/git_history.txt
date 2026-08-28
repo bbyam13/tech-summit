@@ -1,0 +1,13 @@
+*   af10dbd (HEAD -> main) Merge branch 'dev-app-retention' into main - deploy retention agent app
+|\  
+| * 9a9a412 (dev-app-retention) feat(app): Layer 3 — write actions with human approval (closed loop)
+| * 82237db feat(app): Layer 2 — AI assistant with BM25 search + memo drafting
+| * 60f3d97 feat(app): Layer 1 — live ranked risk view of at-risk subscribers
+|/  
+* f86973b (origin/main, origin/HEAD) sub1
+*   3ff5e09 Merge branch 'dev-retention-schema' into main - promote retention schema changes
+|\  
+| * ab3ef0f (origin/dev-retention-schema, dev-retention-schema) feat(lakebase): add retention schema, search indexes, and submission evidence\n\nCo-authored-by: Genie Code <genie-code@databricks.com>\n\n- Add retention_actions + offers_catalog tables\n- Enable lakebase_vector, lakebase_text, vector extensions\n- Add priority_score column (agentic schema migration)\n- Create BM25 search index on notes\n- Configure CDF reverse sync to UC Delta\n- Add all submission1/ evidence files"
+|/  
+* 40d4c28 zip
+* e954c29 Add files via upload

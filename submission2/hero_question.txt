@@ -1,0 +1,27 @@
+Hero Question: "Why is this subscriber at risk, and what do I offer?"
+
+Subscriber: SUB-0000214
+Answer: Service-reason churn triggered by NODE-OHIO-14 outage + billing dispute.
+        Offer: bill_credit (model confidence 92%, predicted retained CLV $2,100).
+
+Decision Chain (linked record IDs across exports):
+1. Risk Trigger    -> state_table.json: event_type='risk_trigger', subscriber='SUB-0000214'
+                     {risk_score: 0.84, clv_at_risk: 2500, node: NODE-OHIO-14}
+2. Offer Recommend -> state_table.json: event_type='offer_recommended', decision='bill_credit'
+                     {model: retention_v3, confidence: 0.92}
+3. Assistant Query -> assist_log.jsonl: type='explanation', search via BM25 index
+                     Retrieved prior retained outcome (score 0.518)
+4. Memo Drafted    -> drafted_sample.md: auto-generated decision memo
+5. Action Submit   -> writeback_table.json: action_id=13, outcome='pending'
+                     state_table.json: event_type='action_submitted', action_id=13
+6. Manager Approve -> writeback_table.json: action_id=13, outcome='approved', agent_id='mgr-jones'
+                     state_table.json: event_type='action_approved', action_id=13
+7. Closed Loop     -> view_result.json: next refresh shows updated risk view
+                     CDF syncs approved action back to UC Delta for model retraining
+
+Tables involved:
+- dev_brendan_byam_streamline_telco.synced_subscriber_position (READ - identifies risk)
+- dev_brendan_byam_streamline_telco.synced_retention_recommendations (READ - prescribes offer)
+- public.retention_actions (WRITE - records decision, searchable via BM25)
+- public.workflow_state (WRITE - tracks trigger-to-approval pipeline)
+- alex_feng.default.lb_retention_actions_history (CDF - streams back to UC)

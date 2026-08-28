@@ -1,0 +1,55 @@
+[
+  {
+    "event_id": 1,
+    "event_type": "risk_trigger",
+    "subscriber_id": "SUB-0000214",
+    "trigger_source": "system_score_update",
+    "decision": "flag_critical",
+    "action_id": null,
+    "metadata": {
+      "node": "NODE-OHIO-14",
+      "risk_score": 0.84,
+      "clv_at_risk": 2500
+    },
+    "created_at": "2026-08-28 01:41:27.246637+00:00"
+  },
+  {
+    "event_id": 2,
+    "event_type": "offer_recommended",
+    "subscriber_id": "SUB-0000214",
+    "trigger_source": "ml_model",
+    "decision": "bill_credit",
+    "action_id": null,
+    "metadata": {
+      "model": "retention_v3",
+      "confidence": 0.92
+    },
+    "created_at": "2026-08-28 01:41:27.246637+00:00"
+  },
+  {
+    "event_id": 3,
+    "event_type": "action_submitted",
+    "subscriber_id": "SUB-0000214",
+    "trigger_source": "care_agent",
+    "decision": "present_offer",
+    "action_id": 13,
+    "metadata": {
+      "agent": "agent-care-jsmith",
+      "channel": "app"
+    },
+    "created_at": "2026-08-28 01:41:27.246637+00:00"
+  },
+  {
+    "event_id": 4,
+    "event_type": "action_approved",
+    "subscriber_id": "SUB-0000214",
+    "trigger_source": "manager",
+    "decision": "approve",
+    "action_id": 13,
+    "metadata": {
+      "approver": "mgr-jones",
+      "review_time_sec": 45
+    },
+    "created_at": "2026-08-28 01:41:27.246637+00:00"
+  }
+]
