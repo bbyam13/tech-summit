@@ -1,0 +1,6 @@
+Search query: outage bill credit service restored
+
+Method: Lakebase BM25 Search (lakebase_text extension)
+Index: idx_retention_notes_bm25 USING lakebase_bm25 ((to_tsvector('english', notes)))
+Query function: to_bm25query('english', ...)
+Match operator: @@

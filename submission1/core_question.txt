@@ -1,0 +1,5 @@
+Which critical-risk subscribers on NODE-OHIO-14 have the highest CLV at risk?
+
+Context: NODE-OHIO-14 experienced an outage ~3 weeks ago that pushed ~200 subscribers
+into churn risk. This query identifies the most valuable at-risk subscribers on that node
+so the retention team can prioritize save attempts.

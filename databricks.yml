@@ -17,13 +17,16 @@
 bundle:
   name: workshop-streamline-telco
 
+include:
+  - resources/*.yml
+
 workspace:
   root_path: /Workspace/Users/${workspace.current_user.userName}/streamline-telco-workshop
 
 variables:
   catalog:
     description: Unity Catalog for the workshop data (must already exist / you can create it).
-    default: dbdemos_templates
+    default: bbyam_ts
   schema:
     description: Schema for the demo tables + the raw_data volume (created by this bundle).
     default: streamline_telco

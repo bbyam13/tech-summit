@@ -1,0 +1,10 @@
+=== Schema Diff: retention_actions ===
+Branch: dev-retention-schema (br-nameless-frost-d2nw08ds) vs production
+
++ ADDED COLUMN: priority_score NUMERIC(5,2) DEFAULT 0.0 CHECK (0 <= x <= 100)
++ ADDED INDEX:  idx_retention_actions_subscriber_outcome ON (subscriber_id, outcome, created_at DESC)
++ DATA CHANGE:  UPDATE retention_actions SET priority_score = CASE ... END
+
+Production columns (9): ['action_id', 'subscriber_id', 'action_type', 'offer_id', 'agent_id', 'outcome', 'notes', 'created_at', 'updated_at']
+Dev columns (10): ['action_id', 'subscriber_id', 'action_type', 'offer_id', 'agent_id', 'outcome', 'notes', 'created_at', 'updated_at', 'priority_score']
+New on dev: columns={'priority_score'}, indexes={'idx_retention_actions_subscriber_outcome', 'idx_retention_notes_bm25'}
